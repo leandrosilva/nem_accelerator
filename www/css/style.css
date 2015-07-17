@@ -1,0 +1,24 @@
+/* Empty. Add your own CSS if you like */
+@import url(http://fonts.googleapis.com/css?family=Jura:600);
+
+.i .ion-ios-speedometer-outline {
+  width: 200px;
+  height: 200px;
+}
+
+.center {
+  text-align:center;
+}
+
+.custom-size-icon {
+  font-size: 25px;
+}
+
+.custom-size-font {
+  font-size: 30px;
+  font-family: 'Jura', sans-serif;
+}
+
+.custom-color-icon-red {
+	color: red;
+}
