@@ -24,7 +24,7 @@
   <body ng-app="nem_accelerator" ng-controller="CarController">
     <ion-pane>
       <ion-header-bar class="bar bar-header bar-dark">
-        <h1 class="title"><i class="ion-ios-speedometer-outline"></i></h1>
+        <h1 class="title"><i class="ion-social-github custom-size-icon"></i></h1>
       </ion-header-bar>
 
       <ion-content class="center">
@@ -45,12 +45,16 @@
           </button></div>
         </div>
         <div class="row">
+          <div class="col">
+            <div class="button-bar no-padding-left">
+              <a class="button icon ion-arrow-left-a" on-touch="toggleArrowLeft()" ng-class="{'custom-color-icon-red': car.isLeftArrow}"></a>
+              <a class="button icon ion-arrow-right-a" on-touch="toggleArrowRight()" ng-class="{'custom-color-icon-red': car.isRightArrow}"></a>
+            </div>
+          </div>
           <div class="col"></div>
           <div class="col"></div>
           <div class="col"></div>
-          <div class="col"></div>
-          <div class="col"><button class="button icon ion-pause" on-touch="keepAcceleration()" on-release="releaseAccelerator()">
-          </button></div>
+          <div class="col"><button class="button icon ion-pause" on-touch="keepAcceleration()" on-release="releaseAccelerator()"></button></div>
         </div>
         <div class="row">
           <div class="col">
@@ -60,8 +64,7 @@
           <div class="col"></div>
           <div class="col"></div>
           <div class="col"></div>
-          <div class="col"><button class="button icon ion-stop" on-touch="pushBreaker()" on-release="releaseBreaker()">
-          </button></div>
+          <div class="col"><button class="button icon ion-stop" on-touch="pushBreaker()" on-release="releaseBreaker()"></button></div>
         </div>
       </ion-content>
     </ion-pane>

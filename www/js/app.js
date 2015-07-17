@@ -162,6 +162,30 @@ angular.module('nem_accelerator', ['ionic'])
   $scope.refillGas = function() {
     $scope.car.gasLevel = 100;
   }
+
+  $scope.toggleArrowLeft = function() {
+    if ($scope.car.engineIsOn) {
+      if ($scope.car.isLeftArrow) {
+        $scope.car.isLeftArrow = false;
+        $scope.car.isRightArrow = false;
+      } else {
+        $scope.car.isLeftArrow = true;
+        $scope.car.isRightArrow = false;
+      }
+    }
+  };
+
+  $scope.toggleArrowRight = function() {
+    if ($scope.car.engineIsOn) {
+      if ($scope.car.isRightArrow) {
+        $scope.car.isRightArrow = false;
+        $scope.car.isLeftArrow = false;
+      } else {
+        $scope.car.isRightArrow = true;
+        $scope.car.isLeftArrow = false;
+      }
+    }
+  };
 })
 
 .run(function($ionicPlatform) {

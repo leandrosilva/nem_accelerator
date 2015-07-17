@@ -22,3 +22,15 @@
 .custom-color-icon-red {
 	color: red;
 }
+
+.little-padding-left {
+    padding-left: 8px !important;
+}
+
+.no-padding-bottom {
+    padding-bottom: 0px !important;
+}
+
+.no-padding-left {
+    padding-left: 0px !important;
+}
