@@ -163,6 +163,10 @@ angular.module('nem_accelerator', ['ionic'])
 
   $scope.refillGas = function() {
     $scope.car.gasLevel = 100;
+		
+  	$interval(function() {
+	    $scope.car.gasLevelIsHigh = !$scope.car.gasLevelIsHigh;
+		}, 1*(10*60), 6);
   }
 
 	$scope.resetArrowBlinker = function() {
@@ -175,7 +179,7 @@ angular.module('nem_accelerator', ['ionic'])
     if ($scope.car.engineIsOn) {
 			$scope.resetArrowBlinker();
 
-	  	arrowBlinker = $interval(function() {
+	  	$interval(function() {
 	    	$scope.car.isLeftArrow = !$scope.car.isLeftArrow;
 	      $scope.car.isRightArrow = false;
 			}, 1*(10*60), 10);
@@ -186,7 +190,7 @@ angular.module('nem_accelerator', ['ionic'])
     if ($scope.car.engineIsOn) {
 			$scope.resetArrowBlinker();
 
-	  	arrowBlinker = $interval(function() {
+	  	$interval(function() {
 	      $scope.car.isRightArrow = !$scope.car.isRightArrow;
 	    	$scope.car.isLeftArrow = false;
 			}, 1*(10*60), 10);
