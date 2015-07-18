@@ -10,6 +10,7 @@ angular.module('nem_accelerator', ['ionic'])
   var decelerate;
   var breaking;
   var gasControl;
+	var arrowBlinker;
 
   $scope.car = {
     engineIsOn: false,
@@ -45,6 +46,7 @@ angular.module('nem_accelerator', ['ionic'])
     }
 
     $scope.gasLevelWatcher();
+		$scope.resetArrowBlinker();
   };
 
   $scope.pushAccelerator = function() {
@@ -163,29 +165,34 @@ angular.module('nem_accelerator', ['ionic'])
     $scope.car.gasLevel = 100;
   }
 
-  $scope.toggleArrowLeft = function() {
+	$scope.resetArrowBlinker = function() {
+		$interval.cancel(arrowBlinker);
+  	$scope.car.isLeftArrow = false;
+    $scope.car.isRightArrow = false;
+	}
+
+  $scope.blinkArrowLeft = function() {
     if ($scope.car.engineIsOn) {
-      if ($scope.car.isLeftArrow) {
-        $scope.car.isLeftArrow = false;
-        $scope.car.isRightArrow = false;
-      } else {
-        $scope.car.isLeftArrow = true;
-        $scope.car.isRightArrow = false;
-      }
+			$scope.resetArrowBlinker();
+
+	  	arrowBlinker = $interval(function() {
+	    	$scope.car.isLeftArrow = !$scope.car.isLeftArrow;
+	      $scope.car.isRightArrow = false;
+			}, 1*(10*60), 10);
     }
   };
 
-  $scope.toggleArrowRight = function() {
+  $scope.blinkArrowRight = function() {
     if ($scope.car.engineIsOn) {
-      if ($scope.car.isRightArrow) {
-        $scope.car.isRightArrow = false;
-        $scope.car.isLeftArrow = false;
-      } else {
-        $scope.car.isRightArrow = true;
-        $scope.car.isLeftArrow = false;
-      }
+			$scope.resetArrowBlinker();
+
+	  	arrowBlinker = $interval(function() {
+	      $scope.car.isRightArrow = !$scope.car.isRightArrow;
+	    	$scope.car.isLeftArrow = false;
+			}, 1*(10*60), 10);
     }
   };
+	
 })
 
 .run(function($ionicPlatform) {
