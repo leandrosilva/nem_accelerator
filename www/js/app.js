@@ -171,29 +171,39 @@ angular.module('nem_accelerator', ['ionic'])
 
 	$scope.resetArrowBlinker = function() {
 		$interval.cancel(arrowBlinker);
+    arrowBlinker = undefined;
+
   	$scope.car.isLeftArrow = false;
     $scope.car.isRightArrow = false;
 	}
 
   $scope.blinkArrowLeft = function() {
     if ($scope.car.engineIsOn) {
-			$scope.resetArrowBlinker();
+      if (arrowBlinker == undefined) {
+        $scope.resetArrowBlinker();
 
-	  	$interval(function() {
-	    	$scope.car.isLeftArrow = !$scope.car.isLeftArrow;
-	      $scope.car.isRightArrow = false;
-			}, 1*(10*60), 10);
+        arrowBlinker = $interval(function() {
+          $scope.car.isLeftArrow = !$scope.car.isLeftArrow;
+          $scope.car.isRightArrow = false;
+        }, 1*(10*60));
+      } else {
+        $scope.resetArrowBlinker();
+      }
     }
   };
 
   $scope.blinkArrowRight = function() {
     if ($scope.car.engineIsOn) {
-			$scope.resetArrowBlinker();
+      if (arrowBlinker == undefined) {
+        $scope.resetArrowBlinker();
 
-	  	$interval(function() {
-	      $scope.car.isRightArrow = !$scope.car.isRightArrow;
-	    	$scope.car.isLeftArrow = false;
-			}, 1*(10*60), 10);
+  	  	arrowBlinker = $interval(function() {
+  	      $scope.car.isRightArrow = !$scope.car.isRightArrow;
+  	    	$scope.car.isLeftArrow = false;
+  			}, 1*(10*60), 10);
+      } else {
+        $scope.resetArrowBlinker();
+      }
     }
   };
 	
