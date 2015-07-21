@@ -3,9 +3,9 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('nem_accelerator', ['ionic'])
+angular.module('nem_accelerator', ['ionic', 'ngCordova'])
 
-.controller('CarController', function($scope, $interval) {
+.controller('CarController', function($scope, $interval, $cordovaMedia) {
   var accelerate;
   var decelerate;
   var breaking;
@@ -162,11 +162,13 @@ angular.module('nem_accelerator', ['ionic'])
   $scope.gasLevelWatcher();
 
   $scope.refillGas = function() {
-    $scope.car.gasLevel = 100;
-		
-  	$interval(function() {
-	    $scope.car.gasLevelIsHigh = !$scope.car.gasLevelIsHigh;
-		}, 1*(10*60), 6);
+    if (!$scope.car.engineIsOn) {
+      $scope.car.gasLevel = 100;
+  		
+    	$interval(function() {
+  	    $scope.car.gasLevelIsHigh = !$scope.car.gasLevelIsHigh;
+  		}, 1*(10*60), 6);
+    }
   }
 
 	$scope.resetArrowBlinker = function() {
@@ -181,6 +183,7 @@ angular.module('nem_accelerator', ['ionic'])
     if ($scope.car.engineIsOn) {
       if (arrowBlinker == undefined) {
         $scope.resetArrowBlinker();
+        $scope.car.isLeftArrow = true;
 
         arrowBlinker = $interval(function() {
           $scope.car.isLeftArrow = !$scope.car.isLeftArrow;
@@ -190,12 +193,13 @@ angular.module('nem_accelerator', ['ionic'])
         $scope.resetArrowBlinker();
       }
     }
-  };
+  }
 
   $scope.blinkArrowRight = function() {
     if ($scope.car.engineIsOn) {
       if (arrowBlinker == undefined) {
         $scope.resetArrowBlinker();
+        $scope.car.isRightArrow = true;
 
   	  	arrowBlinker = $interval(function() {
   	      $scope.car.isRightArrow = !$scope.car.isRightArrow;
@@ -205,8 +209,16 @@ angular.module('nem_accelerator', ['ionic'])
         $scope.resetArrowBlinker();
       }
     }
-  };
-	
+  }
+
+  $scope.playBuzz = function() {
+    var buzz = new Media('/sound/buzz.mp3',
+      function () {
+      },
+      function (err) {
+      });
+    buzz.play();
+  }	
 })
 
 .run(function($ionicPlatform) {

@@ -16,6 +16,7 @@
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
+    <script src="js/ng-cordova.min.js"></script>
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
@@ -23,8 +24,8 @@
   </head>
   <body ng-app="nem_accelerator" ng-controller="CarController">
     <ion-pane>
-      <ion-header-bar class="bar bar-header bar-dark">
-        <h1 class="title"><i class="ion-social-github custom-size-icon"></i></h1>
+      <ion-header-bar class="bar bar-header bar-dark center-title" align-title="center">
+        <img src="img/audi_logo.png" height="45" />
       </ion-header-bar>
 
       <ion-content class="center">
@@ -47,19 +48,19 @@
         <div class="row">
           <div class="col">
             <div class="button-bar no-padding-left">
-              <a class="button icon ion-arrow-left-a" on-touch="blinkArrowLeft()" ng-class="{'custom-color-icon-green': car.isLeftArrow}"></a>
-              <a class="button icon ion-arrow-right-a" on-touch="blinkArrowRight()" ng-class="{'custom-color-icon-green': car.isRightArrow}"></a>
+              <a class="button icon ion-arrow-left-a" ng-click="blinkArrowLeft()" ng-class="{'custom-color-icon-green': car.isLeftArrow}"></a>
+              <a class="button icon ion-arrow-right-a" ng-click="blinkArrowRight()" ng-class="{'custom-color-icon-green': car.isRightArrow}"></a>
             </div>
           </div>
           <div class="col"></div>
-          <div class="col"></div>
+          <div class="col"><button class="button icon ion-volume-high" ng-click="playBuzz()"></button></div>
           <div class="col"></div>
           <div class="col"><button class="button icon ion-pause" on-touch="keepAcceleration()" on-release="releaseAccelerator()"></button></div>
         </div>
         <div class="row">
           <div class="col">
             <!-- <input type="range" name="car.gasLevel" ng-model="car.gasLevel" min="0" max="100" ng-show="car.engineIsOn"> -->
-            <button class="button icon ion-card custom-color-icon" ng-show="!car.engineIsOn" ng-click="refillGas()"></button>
+            <button class="button icon ion-card custom-color-icon" ng-click="refillGas()"></button>
           </div>
           <div class="col"></div>
           <div class="col"></div>
