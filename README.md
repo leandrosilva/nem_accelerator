@@ -2,6 +2,8 @@
 
 This is just a simple iOS app to try Ionic framework.
 
+My little boy is absolutely psyched for cars, and loves to pretend he is a driver, so I did it for him. He loved it and uses it everyday.
+
 ## Copyright
 
 Copyright (c) 2012 Leandro Silva <leandrodoze@gmail.com>
